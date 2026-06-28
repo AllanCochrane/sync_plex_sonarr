@@ -1,0 +1,8 @@
+{
+  "name": "Plex to Sonarr Sync",
+  "description": "Syncs Plex TV library existence to Sonarr to prevent duplicate downloads.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
