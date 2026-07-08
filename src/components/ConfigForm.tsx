@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Config } from '../types';
 import { Save } from 'lucide-react';
 
@@ -10,13 +10,22 @@ interface Props {
 export function ConfigForm({ initialConfig, onSave }: Props) {
   const [config, setConfig] = useState<Config>(initialConfig);
 
+  useEffect(() => {
+    setConfig(initialConfig);
+  }, [initialConfig]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSave(config);
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setConfig(prev => ({ ...prev, [name]: value }));
+  };
+
   return (
-    <div className="max-w-2xl mx-auto p-6 backdrop-blur-md bg-white/5 border border-white/10 rounded-3xl">
+    <div className="max-w-2xl mx-auto p-6 backdrop-blur-md bg-white/5 border border-white/10 rounded-3xl relative z-50">
       <h2 className="text-xl font-medium text-white mb-6">Connection Setup</h2>
       
       <div className="mb-6 p-4 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl text-sm text-indigo-200">
@@ -35,8 +44,8 @@ export function ConfigForm({ initialConfig, onSave }: Props) {
               required
               placeholder="http://192.168.1.10:32400"
               value={config.plexUrl || ''}
-              onChange={(e) => setConfig({ ...config, plexUrl: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 relative z-20"
+              onChange={handleChange}
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 pointer-events-auto relative z-50 select-auto"
             />
           </div>
           <div>
@@ -47,8 +56,8 @@ export function ConfigForm({ initialConfig, onSave }: Props) {
               type="password"
               required
               value={config.plexToken || ''}
-              onChange={(e) => setConfig({ ...config, plexToken: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 relative z-20"
+              onChange={handleChange}
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 pointer-events-auto relative z-50 select-auto"
             />
           </div>
         </div>
@@ -64,8 +73,8 @@ export function ConfigForm({ initialConfig, onSave }: Props) {
               required
               placeholder="http://192.168.1.10:8989"
               value={config.sonarrUrl || ''}
-              onChange={(e) => setConfig({ ...config, sonarrUrl: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 relative z-20"
+              onChange={handleChange}
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 pointer-events-auto relative z-50 select-auto"
             />
           </div>
           <div>
@@ -76,15 +85,15 @@ export function ConfigForm({ initialConfig, onSave }: Props) {
               type="password"
               required
               value={config.sonarrApiKey || ''}
-              onChange={(e) => setConfig({ ...config, sonarrApiKey: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 relative z-20"
+              onChange={handleChange}
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 pointer-events-auto relative z-50 select-auto"
             />
           </div>
         </div>
 
         <button
           type="submit"
-          className="w-full flex justify-center items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-3 px-4 rounded-xl transition-colors"
+          className="w-full flex justify-center items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-3 px-4 rounded-xl transition-colors cursor-pointer relative z-50"
         >
           <Save className="w-4 h-4" />
           Save Configuration
