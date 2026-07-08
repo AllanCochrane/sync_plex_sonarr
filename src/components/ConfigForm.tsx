@@ -27,24 +27,28 @@ export function ConfigForm({ initialConfig, onSave }: Props) {
         <div className="space-y-4">
           <h3 className="text-[10px] font-bold text-indigo-400 uppercase tracking-wider">Plex Configuration</h3>
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-1">Plex URL</label>
+            <label htmlFor="plexUrl" className="block text-sm font-medium text-slate-300 mb-1">Plex URL</label>
             <input
+              id="plexUrl"
+              name="plexUrl"
               type="text"
               required
               placeholder="http://192.168.1.10:32400"
-              value={config.plexUrl}
+              value={config.plexUrl || ''}
               onChange={(e) => setConfig({ ...config, plexUrl: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 relative z-20"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-1">Plex Token</label>
+            <label htmlFor="plexToken" className="block text-sm font-medium text-slate-300 mb-1">Plex Token</label>
             <input
+              id="plexToken"
+              name="plexToken"
               type="password"
               required
-              value={config.plexToken}
+              value={config.plexToken || ''}
               onChange={(e) => setConfig({ ...config, plexToken: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 relative z-20"
             />
           </div>
         </div>
@@ -52,24 +56,28 @@ export function ConfigForm({ initialConfig, onSave }: Props) {
         <div className="space-y-4 pt-4 border-t border-white/10">
           <h3 className="text-[10px] font-bold text-indigo-400 uppercase tracking-wider">Sonarr Configuration</h3>
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-1">Sonarr URL</label>
+            <label htmlFor="sonarrUrl" className="block text-sm font-medium text-slate-300 mb-1">Sonarr URL</label>
             <input
+              id="sonarrUrl"
+              name="sonarrUrl"
               type="text"
               required
               placeholder="http://192.168.1.10:8989"
-              value={config.sonarrUrl}
+              value={config.sonarrUrl || ''}
               onChange={(e) => setConfig({ ...config, sonarrUrl: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 relative z-20"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-1">Sonarr API Key</label>
+            <label htmlFor="sonarrApiKey" className="block text-sm font-medium text-slate-300 mb-1">Sonarr API Key</label>
             <input
+              id="sonarrApiKey"
+              name="sonarrApiKey"
               type="password"
               required
-              value={config.sonarrApiKey}
+              value={config.sonarrApiKey || ''}
               onChange={(e) => setConfig({ ...config, sonarrApiKey: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 relative z-20"
             />
           </div>
         </div>
